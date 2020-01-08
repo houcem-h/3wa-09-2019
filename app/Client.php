@@ -8,7 +8,7 @@ class Client extends Model
 {
     //protected $table = 'customers';
 
-    //public $primaryKey = 'ncin';
+    //protected $primaryKey = 'ncin';
 
     //public $incrementing = false;
 
