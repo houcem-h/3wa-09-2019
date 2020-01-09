@@ -6,6 +6,12 @@
             {{ session('successNewClient') }}
         </div>
     @endif
+    @if (session('successUpdateClient'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('successUpdateClient') }}
+        </div>
+    @endif
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -17,6 +23,11 @@
                     <li class="list-group-item">{{$client->adresse}}</li>
                     <li class="list-group-item">{{$client->tel}}</li>
                 </ul>
+            </div>
+            <div class="panel-footer py-3">
+                <a href="{{ route('client.edit', ['client' => $client->id]) }}" class="btn btn-info">
+                    Editer
+                </a>
             </div>
         </div>
     </div>

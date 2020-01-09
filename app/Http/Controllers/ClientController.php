@@ -25,7 +25,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.create');
+        $client = new Client;
+        return view('client.create', compact('client'));
     }
 
     /**
@@ -36,13 +37,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request, [
-            'nom' => 'required|max:50|min:2',
-            'prenom' => 'required|max:50|min:2',
-            'dateNaissance' => 'required|date',
-            'adresse' => 'required|max:70|min:10',
-            'tel' => 'required|digits:8'
-        ]);
+        $data = $this->validate($request, $this->validationRules());
 
         $client = Client::create($data);
         return redirect()->route('client.show', $client)->with('successNewClient', 'client ajouté avec succés');
@@ -67,7 +62,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        return view('client.edit', compact('client'));
     }
 
     /**
@@ -79,7 +74,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $data = $this->validate($request, $this->validationRules());
+        $client->update($data);
+        return redirect()->route('client.show', $client)->with('successUpdateClient', 'client modifié avec succés');
+
     }
 
     /**
@@ -91,5 +89,16 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    private function validationRules()
+    {
+        return [
+            'nom' => 'required|max:50|min:2',
+            'prenom' => 'required|max:50|min:2',
+            'dateNaissance' => 'required|date',
+            'adresse' => 'required|max:70|min:10',
+            'tel' => 'required|digits:8'
+        ];
     }
 }
