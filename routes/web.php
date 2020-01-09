@@ -16,7 +16,8 @@
 // });
 
 
-Route::get('/', 'PagesController@welcome');
-Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@services');
+Route::get('/', 'PagesController@welcome')->name('welcome');
+Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/services', 'PagesController@services')->name('services');
 
+Route::resource('client', 'ClientController');

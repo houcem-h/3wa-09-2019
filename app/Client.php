@@ -11,6 +11,8 @@ class Client extends Model
     //public $incrementing = false;
     //public $timestamps = false;
 
+    protected $guarded  = [];
+
     public function comptes()
     {
         return $this->hasMany('App\Compte');
