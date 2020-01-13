@@ -1,5 +1,11 @@
 @extends('layouts.myapp')
 @section('contenu')
+    @if (session('successDelete'))
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ session('successDelete') }}
+    </div>
+    @endif
     <a href="{{ route('client.create') }}" class="btn btn-info">Nouveau Client</a>
     <h2 class="py-2">Liste des clients</h2>
     @if (count($clients) > 0)

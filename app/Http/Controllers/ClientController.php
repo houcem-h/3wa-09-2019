@@ -40,6 +40,9 @@ class ClientController extends Controller
         $data = $this->validate($request, $this->validationRules());
 
         $client = Client::create($data);
+
+        $this->uploadImage($client);
+        
         return redirect()->route('client.show', $client)->with('successNewClient', 'client ajouté avec succés');
     }
 
@@ -51,6 +54,8 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
+        //$comptes = $client->comptes;
+        //return $comptes;
         return view('client.show')->with('client', $client);
     }
 
@@ -76,6 +81,9 @@ class ClientController extends Controller
     {
         $data = $this->validate($request, $this->validationRules());
         $client->update($data);
+
+        $this->uploadImage($client);
+
         return redirect()->route('client.show', $client)->with('successUpdateClient', 'client modifié avec succés');
 
     }
@@ -88,7 +96,8 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('client.index')->with('successDelete', 'Client supprimé avec succès');
     }
 
     private function validationRules()
@@ -98,7 +107,17 @@ class ClientController extends Controller
             'prenom' => 'required|max:50|min:2',
             'dateNaissance' => 'required|date',
             'adresse' => 'required|max:70|min:10',
-            'tel' => 'required|digits:8'
+            'tel' => 'required|digits:8',
+            'cinImage' => 'sometimes|file|image'
         ];
+    }
+
+    private function uploadImage($client)
+    {
+        if (request()->has('cinImage')) {
+            $client->update([
+                'cinImage' => request()->cinImage->store('uploads', 'public')
+            ]);
+        }
     }
 }

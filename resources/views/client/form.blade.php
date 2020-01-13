@@ -28,6 +28,13 @@
     @enderror
 </div>
 <div class="form-group">
+    <label for="cinImage">CIN</label>
+    <input type="file" name="cinImage" id="cinImage" value="{{ old('cinImage') ?? $client->cinImage }}" class="form-control">
+    @error('cinImage')
+        <p class="text-danger">{{ $message }}</p>
+    @enderror
+</div>
+<div class="form-group">
     <input type="submit" value="Enregistrer" class="btn btn-success">
     <input type="reset" value="Annuler" class="btn btn-warning">
 </div>

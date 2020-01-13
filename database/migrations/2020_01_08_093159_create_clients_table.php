@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->date('dateNaissance');
             $table->string('adresse');
             $table->bigInteger('tel');
+            $table->string('cinImage')->default('uploads/sample.jpg');
             $table->timestamps();
         });
     }

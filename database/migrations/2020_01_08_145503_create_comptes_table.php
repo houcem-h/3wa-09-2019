@@ -23,7 +23,7 @@ class CreateComptesTable extends Migration
             $table->double('solde')->default(10);
             $table->enum('devise', ['TND', 'EUR', 'USD'])->default('TND');
             $table->timestamps();
-            $table->foreign('titulaire')->references('id')->on('clients');
+            $table->foreign('titulaire')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 

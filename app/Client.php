@@ -15,6 +15,6 @@ class Client extends Model
 
     public function comptes()
     {
-        return $this->hasMany('App\Compte');
+        return $this->hasMany('App\Compte', 'titulaire');
     }
 }
