@@ -1,4 +1,4 @@
-@extends('layouts.myapp')
+@extends('layouts.app')
 @section('contenu')
     <fieldset>
         <legend>Création d'un nouveau client</legend>

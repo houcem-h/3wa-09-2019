@@ -21,3 +21,8 @@ Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/services', 'PagesController@services')->name('services');
 
 Route::resource('client', 'ClientController');
+//Route::resource('client', 'ClientController')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -1,4 +1,4 @@
-@extends('layouts.myapp')
+@extends('layouts.app')
 @section('contenu')
     @if (session('successNewClient'))
         <div class="alert alert-success alert-dismissible">
